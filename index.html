@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pet World</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card" id="login">
+
+<h1 class="title">🐾 PET WORLD</h1>
+
+<div class="pet">
+🥚
+</div>
+
+<h3>Nhập tên của bạn</h3>
+
+<input
+id="name"
+placeholder="Ví dụ: Hưng">
+
+<button onclick="startGame()">
+
+Bắt đầu
+
+</button>
+
+</div>
+
+<div class="card" id="game" style="display:none;">
+
+<h2 id="playerName"></h2>
+<h3>
+⭐ Level: <span id="level">1</span>
+</h3>
+
+<div style="margin-top:15px;">
+
+<div style="
+width:100%;
+height:22px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;">
+
+<div id="xpBar"
+style="
+width:0%;
+height:22px;
+background:#4CAF50;">
+</div>
+
+</div>
+
+<p>
+
+✨ XP:
+<span id="xp">0</span>/100
+
+</p>
+
+</div>
+<div class="money">
+
+<span>💰 <span id="coin">0</span></span>
+
+<span>💎 <span id="gem">0</span></span>
+
+</div>
+
+<div class="pet" id="pet">
+
+🥚
+
+</div>
+
+<div class="timer">
+
+⏳ Nở sau
+
+<br>
+
+<span id="eggTime">
+
+02:00:00
+
+</span>
+
+</div>
+
+<div class="timer">
+
+🍖 Cho ăn sau
+
+<br>
+
+<span id="feedTime">
+
+15:00
+
+</span>
+
+</div>
+<h3>🍖 Độ no</h3>
+
+<div style="
+width:100%;
+height:20px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;">
+
+<div id="foodBar"
+style="
+width:100%;
+height:20px;
+background:orange;">
+</div>
+
+</div>
+
+<p>
+
+<span id="foodText">
+
+100
+
+</span>%
+
+</p>
+<button
+id="feedBtn"
+onclick="feed()">
+
+🍖 Cho ăn
+
+</button>
+
+<button onclick="openShop()">
+
+🛒 Cửa hàng
+
+</button>
+<button onclick="openMore()">
+
+➕ Thêm
+
+</button>
+<button onclick="openWithdraw()">
+
+💵 Rút tiền
+
+</button>
+<button onclick="openAdminLogin()">
+
+👑 Quản trị
+
+</button>
+<button
+id="sellBtn"
+onclick="sellPet()"
+style="display:none;">
+
+💰 Bán thú
+
+</button>
+</div>
+
+</div>
+<div id="adminPanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:320px;
+box-shadow:0 0 15px black;
+z-index:999;
+">
+
+<h2>👑 Trang quản trị</h2>
+
+<button onclick="openGiftCode()">
+
+🎁 Gửi Code
+
+</button>
+
+<br><br>
+
+<button onclick="openWithdrawAdmin()">
+
+💵 Yêu cầu rút tiền
+
+</button>
+
+<br><br>
+
+<button onclick="closeAdmin()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="giftCodePanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:330px;
+box-shadow:0 0 15px black;
+z-index:1000;
+">
+
+<h2>🎁 Tạo Gift Code</h2>
+
+<p>Mã Code</p>
+
+<input
+id="giftCode"
+placeholder="Ví dụ: ABC">
+
+<br><br>
+
+<p>Tổng tiền (đ)</p>
+
+<input
+id="giftMoney"
+type="number"
+placeholder="Ví dụ: 50000">
+
+<br><br>
+
+<p>Số lượng</p>
+
+<input
+id="giftAmount"
+type="number"
+placeholder="Ví dụ: 50">
+
+<br><br>
+
+<h3>
+
+Mỗi người nhận:
+
+<span id="giftEach">
+
+0
+
+</span> đ
+
+</h3>
+
+<br>
+
+<button onclick="createGiftCode()">
+
+✅ Tạo Code
+
+</button>
+
+<br><br>
+
+<button onclick="closeGiftCode()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="codePanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:320px;
+box-shadow:0 0 15px black;
+z-index:1000;
+">
+
+<h2>🎁 Nhập Gift Code</h2>
+
+<input
+id="giftInput"
+placeholder="Nhập mã code">
+
+<br><br>
+
+<button onclick="useGiftCode()">
+
+✅ Nhập
+
+</button>
+
+<br><br>
+
+<button onclick="closeCode()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="withdrawPanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:330px;
+box-shadow:0 0 15px black;
+z-index:1000;
+">
+
+<h2>💵 Rút tiền</h2>
+
+<p>Họ tên</p>
+
+<input id="withdrawName" placeholder="Nguyễn Văn A">
+
+<br><br>
+
+<p>Số ZaloPay</p>
+
+<input id="withdrawZalo" placeholder="0901234567">
+
+<br><br>
+
+<p>Số xu muốn rút</p>
+
+<input id="withdrawCoin" type="number" placeholder="2000">
+
+<br><br>
+
+<button onclick="sendWithdraw()">
+
+📨 Gửi yêu cầu
+
+</button>
+
+<br><br>
+
+<button onclick="closeWithdraw()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="withdrawAdminPanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:330px;
+box-shadow:0 0 15px black;
+z-index:1000;
+">
+
+<h2>💵 Yêu cầu rút tiền</h2>
+
+<p>
+
+👤
+
+<span id="withdrawAdminName"></span>
+
+</p>
+
+<p>
+
+📱
+
+<span id="withdrawAdminZalo"></span>
+
+</p>
+
+<p>
+
+💰
+
+<span id="withdrawAdminMoney"></span>
+
+xu
+
+</p>
+
+<br>
+
+<button onclick="finishWithdraw()">
+
+✅ Đã chuyển
+
+</button>
+
+<br><br>
+
+<button onclick="closeWithdrawAdmin()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="invitePanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:330px;
+box-shadow:0 0 15px black;
+z-index:1000;
+">
+
+<h2>👥 Mời bạn bè</h2>
+
+<p>
+
+Mã giới thiệu của bạn
+
+</p>
+
+<input
+id="myInviteCode"
+readonly>
+
+<br><br>
+
+<p>
+
+Bạn nhận:
+<b>2 xu</b>
+
+khi mỗi bạn bè đăng ký bằng mã của bạn.
+
+</p>
+
+<p>
+
+Ngoài ra, khi bạn bè xem quảng cáo,
+bạn nhận thêm <b>1 xu</b>
+(đây là tiền cứng).
+
+</p>
+
+<br>
+
+<button onclick="copyInviteCode()">
+
+📋 Sao chép mã
+
+</button>
+
+<br><br>
+
+<button onclick="closeInvite()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<script src="script.js"></script>
+<div id="adminLogin" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:320px;
+box-shadow:0 0 15px black;
+z-index:999;
+">
+
+<h2>👑 Quản trị viên</h2>
+
+<input
+id="adminKey"
+type="password"
+placeholder="Nhập mã quản trị">
+
+<br><br>
+
+<button onclick="loginAdmin()">
+
+Đăng nhập
+
+</button>
+
+<br><br>
+
+<button onclick="closeAdminLogin()">
+
+Đóng
+
+</button>
+
+</div>
+<div id="moreMenu" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 15px black;
+width:300px;
+">
+
+<h2>➕ Thêm</h2>
+
+<button onclick="openMiniGame()">
+
+🎮 Mini Game
+
+</button>
+
+<br><br>
+
+<button onclick="openCode()">
+
+🎁 Code
+
+</button>
+<button onclick="openInvite()">
+
+👥 Mời bạn bè
+
+</button>
+<br><br>
+
+<button onclick="closeMore()">
+
+❌ Đóng
+
+</button>
+
+</div>
+<div id="shop" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 15px black;
+width:300px;
+">
+
+<h2>🛒 Cửa hàng</h2>
+
+<p>🥚 Trứng thường - 100 xu</p>
+
+<button onclick="buyEgg()">
+Mua
+</button>
+
+<br><br>
+
+<p>🟢 Trứng hiếm - 500 xu</p>
+
+<button onclick="buyRareEgg()">
+Mua
+</button>
+
+<br><br>
+
+<p>🔵 Trứng sử thi - 2000 xu</p>
+
+<button onclick="buyEpicEgg()">
+Mua
+</button>
+
+<br><br>
+
+<button onclick="closeShop()">
+Đóng
+</button>>
+
+</div>
+</body>
+</html>
