@@ -719,25 +719,29 @@ return;
 coin-=money;
 
 updateScreen();
+setInterval(function(){
 
+    if(document.getElementById("adPanel").style.display=="block"){
+
+        if(adSecond>0){
+
+            adSecond--;
+
+            document.getElementById("finishAdBtn").innerHTML="⏳ Đợi "+adSecond+" giây";
+
+        }else{
+
+            document.getElementById("finishAdBtn").disabled=false;
+
+            document.getElementById("finishAdBtn").innerHTML="✅ Đã cho ăn";
+
+        }
+
+    }
+
+},1000);
 saveGame();
-if(document.getElementById("adPanel").style.display=="block"){
 
-if(adSecond>0){
-
-adSecond--;
-
-document.getElementById("finishAdBtn").innerHTML="⏳ Đợi "+adSecond+" giây";
-
-}else{
-
-document.getElementById("finishAdBtn").disabled=false;
-
-document.getElementById("finishAdBtn").innerHTML="✅ Đã xem quảng cáo";
-
-}
-
-}
 localStorage.setItem("withdrawName",name);
 
 localStorage.setItem("withdrawZalo",zalo);
@@ -813,9 +817,7 @@ document.getElementById("finishAdBtn").disabled=true;
 document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
 
 }
-document.getElementById("adPanel").style.display="block";
 
-}
 function closeAdPanel(){
 
 adSecond=10;
