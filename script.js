@@ -785,3 +785,21 @@ document.execCommand("copy");
 alert("📋 Đã sao chép mã giới thiệu!");
 
 }
+function watchAd(){
+
+document.getElementById("adPanel").style.display="block";
+
+}
+function closeAdPanel(){
+
+document.getElementById("adPanel").style.display="none";
+
+}
+
+function finishAd(){
+
+closeAdPanel();
+
+feed();
+
+}
