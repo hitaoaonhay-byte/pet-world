@@ -818,15 +818,9 @@ function closeAdPanel(){
 
 document.getElementById("adPanel").style.display="none";
 
-document.getElementById("finishAdBtn").disabled=true;
-
-document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
-
     }
 function finishAd(){
 
-
-document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
 
 closeAdPanel();
 
