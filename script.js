@@ -816,8 +816,6 @@ document.getElementById("finishAdBtn").innerHTML="✅ Đã cho ăn";
 
 function closeAdPanel(){
 
-adSecond=10;
-
 document.getElementById("adPanel").style.display="none";
 
 document.getElementById("finishAdBtn").disabled=true;
