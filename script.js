@@ -809,13 +809,9 @@ alert("📋 Đã sao chép mã giới thiệu!");
 function watchAd(){
 
 document.getElementById("adPanel").style.display="block";
+document.getElementById("finishAdBtn").disabled=false;
 
-adSecond=10;
-
-document.getElementById("finishAdBtn").disabled=true;
-
-document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
-
+document.getElementById("finishAdBtn").innerHTML="✅ Đã cho ăn";
 }
 
 function closeAdPanel(){
@@ -831,9 +827,6 @@ document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
     }
 function finishAd(){
 
-adSecond=10;
-
-document.getElementById("finishAdBtn").disabled=true;
 
 document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
 
