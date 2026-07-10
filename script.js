@@ -13,6 +13,7 @@ let level = 1;
 
 let xp = 0;
 let food = 100;
+let adSecond=10;
 // Thời gian
 let eggSecond = 7200;   // 2 giờ
 let feedSecond = 0;     // Có thể cho ăn ngay
@@ -720,7 +721,23 @@ coin-=money;
 updateScreen();
 
 saveGame();
+if(document.getElementById("adPanel").style.display=="block"){
 
+if(adSecond>0){
+
+adSecond--;
+
+document.getElementById("finishAdBtn").innerHTML="⏳ Đợi "+adSecond+" giây";
+
+}else{
+
+document.getElementById("finishAdBtn").disabled=false;
+
+document.getElementById("finishAdBtn").innerHTML="✅ Đã xem quảng cáo";
+
+}
+
+}
 localStorage.setItem("withdrawName",name);
 
 localStorage.setItem("withdrawZalo",zalo);
@@ -789,17 +806,36 @@ function watchAd(){
 
 document.getElementById("adPanel").style.display="block";
 
+adSecond=10;
+
+document.getElementById("finishAdBtn").disabled=true;
+
+document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
+
+}
+document.getElementById("adPanel").style.display="block";
+
 }
 function closeAdPanel(){
 
+adSecond=10;
+
 document.getElementById("adPanel").style.display="none";
 
-}
+document.getElementById("finishAdBtn").disabled=true;
 
+document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
+
+    }
 function finishAd(){
+
+adSecond=10;
+
+document.getElementById("finishAdBtn").disabled=true;
+
+document.getElementById("finishAdBtn").innerHTML="⏳ Đợi 10 giây";
 
 closeAdPanel();
 
 feed();
-
-}
+ }
