@@ -140,7 +140,7 @@ background:orange;">
 </p>
 <button
 id="feedBtn"
-onclick="feed()">
+onclick="watchAd()">
 
 🍖 Cho ăn
 
@@ -621,6 +621,46 @@ Mua
 </div>
   <script src="script.js"></script>
   <script src="https://pl30298042.effectivecpmnetwork.com/a2/a6/7e/a2a67e17b1fb70e9e644487b29d4b003.js"></script>
-  
+<div id="adPanel" style="
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:white;
+padding:20px;
+border-radius:15px;
+width:320px;
+text-align:center;
+box-shadow:0 0 20px black;
+z-index:9999;
+">
+
+<h2>🎬 Xem quảng cáo</h2>
+
+<p>
+
+Sau khi xem quảng cáo,
+quay lại game rồi bấm nút bên dưới.
+
+</p>
+
+<br>
+
+<button onclick="finishAd()">
+
+✅ Đã xem quảng cáo
+
+</button>
+
+<br><br>
+
+<button onclick="closeAdPanel()">
+
+❌ Hủy
+
+</button>
+
+</div>  
 </body>
 </html>
