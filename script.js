@@ -19,7 +19,7 @@ let eggSecond = 7200;   // 2 giờ
 let feedSecond = 0;     // Có thể cho ăn ngay
 let petType="none";
 // Bắt đầu game
-function startGame(){
+async function startGame(){
 
     playerName = document.getElementById("name").value.trim();
 
@@ -31,17 +31,40 @@ function startGame(){
 
     }
 
+    try{
+
+        let res = await fetch("https://pet-world-production-3ca7.up.railway.app/load/"+playerName);
+
+        let data = await res.json();
+
+        if(data.success){
+
+            coin = data.player.coin;
+            gem = data.player.gem;
+            level = data.player.level;
+            xp = data.player.xp;
+            food = data.player.food;
+            petType = data.player.pettype;
+
+        }
+
+    }catch(e){
+
+        console.log("Không tải được dữ liệu");
+
+    }
+
     document.getElementById("login").style.display="none";
 
     document.getElementById("game").style.display="block";
 
     document.getElementById("playerName").innerHTML="👋 Xin chào "+playerName;
 
-  updateScreen();
+    updateScreen();
 
-updateTimer();
+    updateTimer();
 
-}
+    }
 
 // Cập nhật giao diện
 function updateScreen(){
@@ -826,3 +849,34 @@ closeAdPanel();
 
 feed();
  }
+async function saveOnline(){
+
+    await fetch("https://pet-world-production-3ca7.up.railway.app/save",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+            name:playerName,
+
+            coin:coin,
+
+            gem:gem,
+
+            level:level,
+
+            xp:xp,
+
+            food:food,
+
+            pettype:petType
+
+        })
+
+    });
+
+}
