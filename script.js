@@ -885,34 +885,3 @@ closeAdPanel();
 
 feed();
  }
-async function saveOnline(){
-
-    await fetch("https://pet-world-production-3ca7.up.railway.app/save",{
-
-        method:"POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify({
-
-            name:playerName,
-
-            coin:coin,
-
-            gem:gem,
-
-            level:level,
-
-            xp:xp,
-
-            food:food,
-
-            pettype:petType
-
-        })
-
-    });
-
-}
