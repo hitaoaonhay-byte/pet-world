@@ -401,19 +401,19 @@ let money=0;
 
 if(petType=="normal"){
 
-money=130;
+money=160;
 
 }
 
 if(petType=="rare"){
 
-money=560;
+money=620;
 
 }
 
 if(petType=="epic"){
 
-money=2120;
+money=2240;
 
 }
 
