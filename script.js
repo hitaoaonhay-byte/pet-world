@@ -237,6 +237,7 @@ localStorage.setItem("petType",petType);
 localStorage.setItem("level",level);
 
 localStorage.setItem("xp",xp);
+saveOnline();
 }
 // =======================
 // TẢI GAME
