@@ -885,3 +885,50 @@ closeAdPanel();
 
 feed();
  }
+async function redeemCode(){
+
+    let code = document.getElementById("giftCode").value.trim();
+
+    if(code==""){
+        alert("Vui lòng nhập gift code");
+        return;
+    }
+
+    try{
+
+        let res = await fetch("https://pet-world-production-3ca7.up.railway.app/redeem",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                name:playerName,
+                code:code
+            })
+        });
+
+        let data = await res.json();
+
+        if(data.success){
+
+            alert("🎉 Nhập code thành công!");
+
+            coin += 30000;
+
+            updateScreen();
+
+            saveGame();
+
+        }else{
+
+            alert(data.message);
+
+        }
+
+    }catch(e){
+
+        alert("Không kết nối được máy chủ");
+
+    }
+
+            }
